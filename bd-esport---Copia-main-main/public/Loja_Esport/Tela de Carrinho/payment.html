@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pagamento</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Oswald:wght@400&display=swap">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #030202;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      color: #fff;
+    }
+
+    .container {
+      text-align: center;
+      background-color: #f2f2f2;
+      padding: 20px;
+      border-radius: 20px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .e-sport {
+      font-family: 'Oswald', sans-serif;
+      font-size: 48px;
+      color: #000000;
+      margin-bottom: 20px;
+    }
+
+    .form-container {
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 20px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .form-container h1 {
+      font-family: 'Oswald', sans-serif;
+      font-size: 48px;
+      color: #000;
+      margin-bottom: 20px;
+    }
+
+    .qr-code {
+      margin-top: 20px;
+    }
+
+    .total {
+      font-size: 32px;
+      color: #000;
+      font-weight: bold;
+      margin-top: 20px;
+    }
+
+    .next-button {
+      width: 198px;
+      height: 44px;
+      cursor: pointer;
+      background: #191919;
+      border: none;
+      border-radius: 25px;
+      color: #fff;
+      font-size: 16px;
+      margin-top: 20px;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <a href="../TelaOFC/index.html"> 
+    <div class="e-sport">E-Sport</div>
+    </a>
+    <div class="form-container">
+      <h1>Pagamento</h1>
+      <div class="total" id="total"></div>
+      <div class="qr-code" id="qr-code"></div>
+      <button class="next-button" onclick="goToThankYouPage()">Próximo</button>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/qrcode@1.4.4/build/qrcode.min.js"></script>
+  <script>
+    let total = parseFloat(localStorage.getItem('total')) || 0;
+    const freight = parseFloat(localStorage.getItem('freight')) || 0;
+    total += freight;
+
+    document.getElementById('total').innerText = `Total a Pagar: R$ ${total.toFixed(2).replace('.', ',')}`;
+
+    const paymentInfo = `00020126330014BR.GOV.BCB.PIX0111472446118700206Pix5204000053039865405${total.toFixed(2).replace('.', '').padStart(10, '0')}5802BR5913Seu Nome Completo6014Nome da Cidade62070503***6304${generateCRC16("00020126330014BR.GOV.BCB.PIX0111472446118700206Pix5204000053039865405" + total.toFixed(2).replace('.', '').padStart(10, '0') + "5802BR5913Seu Nome Completo6014Nome da Cidade62070503***")}`;
+
+    QRCode.toDataURL(paymentInfo, { width: 200, height: 200 }, function (err, url) {
+      if (err) console.error(err);
+      const img = document.createElement('img');
+      img.src = url;
+      document.getElementById('qr-code').appendChild(img);
+    });
+
+    function generateCRC16(data) {
+      let crc = 0xFFFF;
+      const poly = 0x1021;
+      for (let i = 0; i < data.length; i++) {
+        const byte = data.charCodeAt(i);
+        crc ^= (byte << 8);
+        for (let j = 0; j < 8; j++) {
+          if ((crc & 0x8000) !== 0) {
+            crc = (crc << 1) ^ poly;
+          } else {
+            crc <<= 1;
+          }
+        }
+      }
+      return (crc & 0xFFFF).toString(16).toUpperCase().padStart(4, '0');
+    }
+
+    function goToThankYouPage() {
+      window.location.href = "thank_you.html"; // Substitua pelo caminho correto da nova tela
+    }
+  </script>
+</body>
+
+</html>

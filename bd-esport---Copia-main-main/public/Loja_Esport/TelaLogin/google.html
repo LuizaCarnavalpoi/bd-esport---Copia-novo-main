@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tela de Login</title>
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #030202;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            color: #fff;
+        }
+
+        .container {
+            text-align: center;
+            background-color: #f2f2f2;
+            padding: 20px;
+            border-radius: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .e-sport {
+            font-family: 'Oswald', sans-serif;
+            font-size: 48px;
+            color: #000000;
+            margin-bottom: 20px;
+        }
+
+        .form-container {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .form-container h1 {
+            font-family: 'Oswald', sans-serif;
+            font-size: 48px;
+            color: #000;
+            margin-bottom: 20px;
+        }
+
+        .form-container label {
+            display: block;
+            font-weight: bold;
+            font-size: 24px;
+            margin-bottom: 10px;
+            color: #000;
+        }
+
+        .form-container input[type="email"],
+        .form-container input[type="password"] {
+            width: 300px;
+            padding: 15px;
+            margin-bottom: 20px;
+            border: none;
+            border-radius: 30px;
+            background-color: #ccc;
+            text-align: center;
+        }
+
+        .form-container input[type="email"]::placeholder,
+        .form-container input[type="password"]::placeholder {
+            color: #777;
+        }
+
+        .forgot-password {
+            display: block;
+            margin-bottom: 20px;
+            color: #191919;
+            text-decoration: none;
+            font-size: 14px;
+        }
+
+        .submit-button {
+            width: 198px;
+            height: 44px;
+            cursor: pointer;
+            background: #191919;
+            border: none;
+            border-radius: 25px;
+            color: #fff;
+            font-size: 16px;
+            margin-bottom: 20px;
+        }
+
+        .create-account {
+            width: 494px;
+            height: 53px;
+            cursor: pointer;
+            background: #191919;
+            border: none;
+            border-radius: 25px;
+            color: #fff;
+            font-size: 16px;
+        }
+
+        .create-account a {
+            color: #fff;
+            text-decoration: none;
+            display: block;
+            height: 100%;
+            line-height: 53px;
+        }
+
+        .google-button-container {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="e-sport">E-Sport</div>
+        <div class="form-container">
+            <h1>Login</h1>
+            <label for="email">Email</label>
+            <input type="email" id="email" placeholder="Digite seu email">
+            <label for="password">Senha</label>
+            <input type="password" id="password" placeholder="Digite sua senha">
+            <a href="#" class="forgot-password">Esqueceu a senha?</a>
+            <button class="submit-button">Entrar</button>
+            <div class="google-button-container">
+                <button class="create-account">
+                    <a href="https://accounts.google.com/v3/signin/identifier?hl=pt-br&ifkv=AdF4I75dPvDpr1FJhTkqPUOjQGRsBkEYSKqhRNqZuUtp3qUS5QgZh1za32viRrT49GrjdZYjMdMotg&flowName=GlifWebSignIn&flowEntry=ServiceLogin&dsh=S-116708022%3A1722426119388278&ddm=0">Acessar com Google</a>
+                </button>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

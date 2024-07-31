@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resumo da Compra</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Oswald:wght@400&display=swap">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #030202;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            color: #fff;
+        }
+
+        .container {
+            text-align: center;
+            background-color: #f2f2f2;
+            padding: 20px;
+            border-radius: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .summary-container {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .summary-container h1 {
+            font-family: 'Oswald', sans-serif;
+            font-size: 48px;
+            color: #000;
+            margin-bottom: 20px;
+        }
+
+        .summary-item {
+            font-size: 24px;
+            margin-bottom: 10px;
+            color: #000;
+        }
+
+        .total {
+            font-size: 32px;
+            margin-top: 20px;
+            color: #000;
+            font-weight: bold;
+        }
+
+        .next-button {
+            margin-top: 20px;
+            padding: 10px 20px;
+            font-size: 20px;
+            border: none;
+            border-radius: 10px;
+            background-color: #191919;
+            color: #fff;
+            cursor: pointer;
+        }
+
+        .next-button:hover {
+            background-color: #333;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="summary-container">
+            <h1>Resumo da Compra</h1>
+            <div id="summary-items"></div>
+            <div class="total">Total: R$ 0,00</div>
+            <button class="next-button" onclick="goToDelivery()">Próximo</button>
+        </div>
+    </div>
+
+    <script>
+        let cart = JSON.parse(localStorage.getItem('cart')) || [];
+        let total = 0;
+
+        function generateSummary() {
+            const summaryItemsContainer = document.getElementById('summary-items');
+
+            cart.forEach(item => {
+                const summaryItem = document.createElement('div');
+                summaryItem.className = 'summary-item';
+                summaryItem.textContent = `${item.name} - ${item.quantity} x R$ ${item.price.toFixed(2).replace('.', ',')}`;
+                summaryItemsContainer.appendChild(summaryItem);
+                total += item.price * item.quantity;
+            });
+
+            document.querySelector('.total').textContent = `Total: R$ ${total.toFixed(2).replace('.', ',')}`;
+        }
+
+        function goToDelivery() {
+            localStorage.setItem('total', total.toFixed(2));
+            window.location.href = 'delivery.html';
+        }
+
+        window.onload = function() {
+            generateSummary();
+        };
+    </script>
+</body>
+</html>

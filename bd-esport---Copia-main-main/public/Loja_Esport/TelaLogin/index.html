@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tela de Login</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Oxygen:wght@700&display=swap" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Oswald:wght@400&display=swap" />
+    <link rel="stylesheet" href="index.css" />
+</head>
+<body>
+    <div class="container">
+        <a href="../TelaOFC/index.html">
+            <span class="e-sport">E-Sport</span>
+        </a>
+        <div class="form-container">
+            <h1>Fazer Login</h1>
+            <label for="email">E-mail</label>
+            <input type="email" id="email" name="email" placeholder="Informe seu e-mail" required oninput="validateForm()" />
+
+            <label for="password">Senha</label>
+            <input type="password" id="password" name="password" placeholder="Digite sua senha" required oninput="validateForm()" />
+
+            <a href="../TelaRecupSenha/index.html" class="forgot-password">Esqueceu a senha?</a>
+            <br>
+            <a href="../TelaOFC/index.html"> 
+            <button class="submit-button" id="login-button" onclick="login()" disabled>Acessar conta</button>
+          </a>
+            <br>
+            <button class="create-account">
+                <a href="../TelaCriarConta/index.html">Crie sua conta na E-Sport</a>
+            </button>
+            <br>
+        </div>
+    </div>
+
+    <script>
+        function validateForm() {
+            const email = document.getElementById('email').value.trim();
+            const password = document.getElementById('password').value.trim();
+            const loginButton = document.getElementById('login-button');
+
+            // Habilita o botão somente se ambos os campos estiverem preenchidos
+            loginButton.disabled = !(email && password);
+        }
+
+        function login() {
+            // Aqui você pode adicionar a lógica para fazer o login
+            alert('Login realizado com sucesso!');
+        }
+    </script>
+</body>
+</html>

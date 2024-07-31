@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="PT-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recuperação de Senha</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Oxygen:wght@700&display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Oswald:wght@400&display=swap">
+    <link rel="stylesheet" href="index.css">
+</head>
+<body>
+    <div class="container">
+        <a href="../TelaOFC/index.html">
+            <span class="e-sport">E-Sport</span>
+        </a>
+        <div class="form-container">
+            <h1>Recuperação de Senha</h1>
+            <label for="email">E-mail</label>
+            <input type="email" id="email" name="email" placeholder="Informe seu e-mail" oninput="validateForm()">
+
+            <br>
+            <label for="new-password">Informe sua nova senha</label> 
+            <input type="password" id="new-password" name="new-password" placeholder="Deve conter pelo menos 6 caracteres" oninput="validateForm()">
+            <br>
+
+            <label for="confirm-password">Insira a nova senha novamente</label> 
+            <input type="password" id="confirm-password" name="confirm-password" placeholder="Deve conter pelo menos 6 caracteres" oninput="validateForm()">
+            <br>
+            <a href="../TelaLogin/index.html"> 
+            <button class="submit-button" id="send-button" disabled>Enviar</button>
+        </a>
+        </div>
+    </div>
+
+    <script>
+        function validateForm() {
+            const email = document.getElementById('email').value.trim();
+            const newPassword = document.getElementById('new-password').value.trim();
+            const confirmPassword = document.getElementById('confirm-password').value.trim();
+            const sendButton = document.getElementById('send-button');
+
+            // Habilita o botão somente se todos os campos estiverem preenchidos e as senhas coincidirem
+            sendButton.disabled = !(email && newPassword && confirmPassword && newPassword === confirmPassword && newPassword.length >= 6);
+        }
+    </script>
+</body>
+</html>
